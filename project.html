@@ -1,34 +1,50 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Messenger-style Chat App</title>
-    <style>
-        /* Global Styles */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+  // Function to add the user's message and bot's reply
+        function addMessage()
+	{
+            const messageContent = messageInput.value.trim();
+
+            if (messageContent)
+	    {
+                // Add user message
+                const userMessage = createMessage(messageContent, true);
+                chatBox.appendChild(userMessage);
+                chatBox.scrollTop = chatBox.scrollHeight; // Auto-scroll
+
+                messageInput.value = ""; // Clear input
+                sendButton.disabled = true; // Disable send button until new input
+
+                // Simulate bot response (this is where WebSocket/Firebase would come in)
+                setTimeout(() => {
+                    const botResponse = createMessage('Bot: Hello, how can I assist you?', false);
+                    chatBox.appendChild(botResponse);
+                    chatBox.scrollTop = chatBox.scrollHeight; // Auto-scroll
+                }
+		, 1000); // Simulate 1-second delay for bot response
+            }
         }
 
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f7f7f7;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-        }
+ // Send message on button click
+        sendButton.addEventListener('click', addMessage);
 
-        .chat-container {
-            width: 450px;
-            height: 600px;
-            background-color: white;
-            border-radius: 8px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            display: flex;
-            flex-direction: column;
-        }
+        // Enable the send button only when the input is not empty
+        messageInput.addEventListener('input', () => {
+            sendButton.disabled = !messageInput.value.trim();
+        });
+
+        // Allow pressing Enter to send the message
+        messageInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter' && messageInput.value.trim()) {
+                addMessage();
+            }
+        });
+ // Simulate the first bot greeting when the page loads
+        setTimeout(() => {
+            const botGreeting = createMessage('Bot: Hello, welcome to the chat!', false);
+            chatBox.appendChild(botGreeting);
+            chatBox.scrollTop = chatBox.scrollHeight; // Auto-scroll
+        }, 500);
+    </script>
+
+</body>
+</html>
 
