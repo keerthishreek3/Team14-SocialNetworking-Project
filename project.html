@@ -31,4 +31,24 @@
 </head>
 <body>
 
+ <div class="chat-container">
+        <div class="header">
+            Chat Messenger
+        </div>
+
+        <div id="chat-box" class="chat-box">
+            <!-- Messages will appear here -->
+        </div>
+
+        <div class="message-input">
+            <input type="text" id="message-input" placeholder="Type a message..." />
+            <button id="send-btn" disabled>Send</button>
+        </div>
+    </div>
+
+    <script>
+        const sendButton = document.getElementById("send-btn");
+        const messageInput = document.getElementById("message-input");
+        const chatBox = document.getElementById("chat-box");
+
 
