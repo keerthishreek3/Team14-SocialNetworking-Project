@@ -1,34 +1,72 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Messenger-style Chat App</title>
-    <style>
-        /* Global Styles */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+/* Header Styles */
+        .header {
+            background-color: #0078d4;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            font-size: 1.5em;
+            border-radius: 8px 8px 0 0;
         }
 
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f7f7f7;
+        /* Chat Box */
+        .chat-box {
+            flex: 1;
+            padding: 10px;
+            overflow-y: auto;
             display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 10px;
         }
 
-        .chat-container {
-            width: 450px;
-            height: 600px;
-            background-color: white;
-            border-radius: 8px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        /* Chat bubbles styles */
+        .message {
             display: flex;
             flex-direction: column;
         }
+
+        .message-bubble {
+            padding: 10px;
+            border-radius: 10px;
+            max-width: 70%;
+            margin-bottom: 10px;
+            word-wrap: break-word;
+            position: relative;
+        }
+
+/* User's Message 
+Bubble */
+        .message-bubble.user {
+            background-color: #0078d4;
+            color: white;
+            align-self: flex-end;
+        }
+
+        /* Bot's Message
+	Bubble */
+        .message-bubble.bot {
+            background-color: #f1f1f1;
+            color: #333;
+            align-self: flex-start;
+        }
+
+        /* Timestamp styles */
+        .timestamp {
+            font-size: 0.8em;
+            color: #888;
+            position: absolute;
+            bottom: -18px;
+            right: 10px;
+        }
+
+        /* Input Area */
+        .message-input {
+            padding: 10px;
+            background-color: #f9f9f9;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid #ddd;
+        }
+
 
