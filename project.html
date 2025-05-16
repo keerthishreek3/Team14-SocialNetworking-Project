@@ -51,4 +51,29 @@
         const messageInput = document.getElementById("message-input");
         const chatBox = document.getElementById("chat-box");
 
+// Helper function to create a message bubble
+        function createMessage(content, isUser = true) {
+            const messageContainer = document.createElement('div');
+            messageContainer.classList.add('message');
+
+            const messageBubble = document.createElement('div');
+            messageBubble.classList.add('message-bubble');
+            if (isUser) {
+                messageBubble.classList.add('user');
+            } else {
+                messageBubble.classList.add('bot');
+            }
+
+            messageBubble.textContent = content;
+
+            const timestamp = document.createElement('span');
+            timestamp.classList.add('timestamp');
+            const currentTime = new Date();
+            timestamp.textContent = ${currentTime.getHours()}:${currentTime.getMinutes()};
+            messageBubble.appendChild(timestamp);
+
+            messageContainer.appendChild(messageBubble);
+
+            return messageContainer;
+        }
 
