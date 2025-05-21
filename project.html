@@ -1,3 +1,4 @@
+ HEAD
 
 /* Header Styles */
         .header {
@@ -19,6 +20,57 @@
             gap: 10px;
             margin-top: 10px;
         }
+
+  // Function to add the user's message and bot's reply
+        function addMessage()
+	{
+            const messageContent = messageInput.value.trim();
+
+            if (messageContent)
+	    {
+                // Add user message
+                const userMessage = createMessage(messageContent, true);
+                chatBox.appendChild(userMessage);
+                chatBox.scrollTop = chatBox.scrollHeight; // Auto-scroll
+
+                messageInput.value = ""; // Clear input
+                sendButton.disabled = true; // Disable send button until new input
+
+                // Simulate bot response (this is where WebSocket/Firebase would come in)
+                setTimeout(() => {
+                    const botResponse = createMessage('Bot: Hello, how can I assist you?', false);
+                    chatBox.appendChild(botResponse);
+                    chatBox.scrollTop = chatBox.scrollHeight; // Auto-scroll
+                }
+		, 1000); // Simulate 1-second delay for bot response
+            }
+        }
+
+ // Send message on button click
+        sendButton.addEventListener('click', addMessage);
+
+        // Enable the send button only when the input is not empty
+        messageInput.addEventListener('input', () => {
+            sendButton.disabled = !messageInput.value.trim();
+        });
+
+        // Allow pressing Enter to send the message
+        messageInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter' && messageInput.value.trim()) {
+                addMessage();
+            }
+        });
+ // Simulate the first bot greeting when the page loads
+        setTimeout(() => {
+            const botGreeting = createMessage('Bot: Hello, welcome to the chat!', false);
+            chatBox.appendChild(botGreeting);
+            chatBox.scrollTop = chatBox.scrollHeight; // Auto-scroll
+        }, 500);
+    </script>
+
+</body>
+</html>
+ test3
 
         /* Chat bubbles styles */
         .message {
@@ -102,7 +154,7 @@
             messageContainer.appendChild(messageBubble);
 
             return messageContainer;
->>>>>>> test2
+ test2
         }
 
         .message-bubble {
