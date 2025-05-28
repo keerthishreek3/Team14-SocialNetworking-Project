@@ -1,0 +1,204 @@
+<<<<<<< HEAD
+
+/* Header Styles */
+        .header {
+            background-color: #0078d4;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            font-size: 1.5em;
+            border-radius: 8px 8px 0 0;
+        }
+
+        /* Chat Box */
+        .chat-box {
+            flex: 1;
+            padding: 10px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 10px;
+        }
+=======
+  // Function to add the user's message and bot's reply
+        function addMessage()
+	{
+            const messageContent = messageInput.value.trim();
+
+            if (messageContent)
+	    {
+                // Add user message
+                const userMessage = createMessage(messageContent, true);
+                chatBox.appendChild(userMessage);
+                chatBox.scrollTop = chatBox.scrollHeight; // Auto-scroll
+
+                messageInput.value = ""; // Clear input
+                sendButton.disabled = true; // Disable send button until new input
+
+                // Simulate bot response (this is where WebSocket/Firebase would come in)
+                setTimeout(() => {
+                    const botResponse = createMessage('Bot: Hello, how can I assist you?', false);
+                    chatBox.appendChild(botResponse);
+                    chatBox.scrollTop = chatBox.scrollHeight; // Auto-scroll
+                }
+		, 1000); // Simulate 1-second delay for bot response
+            }
+        }
+
+ // Send message on button click
+        sendButton.addEventListener('click', addMessage);
+
+        // Enable the send button only when the input is not empty
+        messageInput.addEventListener('input', () => {
+            sendButton.disabled = !messageInput.value.trim();
+        });
+
+        // Allow pressing Enter to send the message
+        messageInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter' && messageInput.value.trim()) {
+                addMessage();
+            }
+        });
+ // Simulate the first bot greeting when the page loads
+        setTimeout(() => {
+            const botGreeting = createMessage('Bot: Hello, welcome to the chat!', false);
+            chatBox.appendChild(botGreeting);
+            chatBox.scrollTop = chatBox.scrollHeight; // Auto-scroll
+        }, 500);
+    </script>
+
+</body>
+</html>
+>>>>>>> test3
+
+        /* Chat bubbles styles */
+        .message {
+            display: flex;
+            flex-direction: column;
+
+  #message-input
+  {
+            flex: 1;
+            padding: 10px;
+            border-radius: 4px;
+            font-size: 14px;
+            border: 1px solid #ccc;
+            margin-right: 10px;
+        }
+
+        #send-btn
+	{
+            padding: 10px 15px;
+            background-color: #0078d4;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        #send-btn:hover
+	{
+            background-color: #005fa3;
+        }
+
+        #send-btn:disabled
+	{
+            background-color: #ccc;
+        }
+    </style>
+</head>
+<body>
+
+ <div class="chat-container">
+        <div class="header">
+            Chat Messenger
+        </div>
+
+        <div id="chat-box" class="chat-box">
+            <!-- Messages will appear here -->
+        </div>
+
+        <div class="message-input">
+            <input type="text" id="message-input" placeholder="Type a message..." />
+            <button id="send-btn" disabled>Send</button>
+        </div>
+    </div>
+
+    <script>
+        const sendButton = document.getElementById("send-btn");
+        const messageInput = document.getElementById("message-input");
+        const chatBox = document.getElementById("chat-box");
+
+// Helper function to create a message bubble
+        function createMessage(content, isUser = true) {
+            const messageContainer = document.createElement('div');
+            messageContainer.classList.add('message');
+
+            const messageBubble = document.createElement('div');
+            messageBubble.classList.add('message-bubble');
+            if (isUser) {
+                messageBubble.classList.add('user');
+            } else {
+                messageBubble.classList.add('bot');
+            }
+
+            messageBubble.textContent = content;
+
+            const timestamp = document.createElement('span');
+            timestamp.classList.add('timestamp');
+            const currentTime = new Date();
+            timestamp.textContent = ${currentTime.getHours()}:${currentTime.getMinutes()};
+            messageBubble.appendChild(timestamp);
+
+            messageContainer.appendChild(messageBubble);
+
+            return messageContainer;
+>>>>>>> test2
+        }
+
+        .message-bubble {
+            padding: 10px;
+            border-radius: 10px;
+            max-width: 70%;
+            margin-bottom: 10px;
+            word-wrap: break-word;
+            position: relative;
+        }
+
+/* User's Message 
+Bubble */
+        .message-bubble.user {
+            background-color: #0078d4;
+            color: white;
+            align-self: flex-end;
+        }
+
+        /* Bot's Message
+	Bubble */
+        .message-bubble.bot {
+            background-color: #f1f1f1;
+            color: #333;
+            align-self: flex-start;
+        }
+
+        /* Timestamp styles */
+        .timestamp {
+            font-size: 0.8em;
+            color: #888;
+            position: absolute;
+            bottom: -18px;
+            right: 10px;
+        }
+
+        /* Input Area */
+        .message-input {
+            padding: 10px;
+            background-color: #f9f9f9;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid #ddd;
+        }
+
+  
